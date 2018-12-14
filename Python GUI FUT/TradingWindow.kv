@@ -1,0 +1,152 @@
+<TradingWindow>:
+    name: 'TradingWindow'
+    DefaultScreen:
+        Label:
+            text: 'Application Status:'
+            pos_hint: {'x': 0, 'y': .65}
+            size_hint: .2,.1
+            color: 0,0,0,1
+            bold: True
+        Label:
+            text: 'Watch List Status:'
+            pos_hint: {'x': .49, 'y': .62}
+            size_hint: .2, .1
+            color: 0, 0, 0, 1
+            bold: True
+        RecycleView:
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, .5)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: '/Users/chris/Desktop/Surran Programs/Fut/Python GUI FUT/images/whiteSquare.jpg'
+
+            id: botActions
+            scroll_type: ['bars', 'content']
+            scroll_wheel_distance: dp(114)
+            bar_width: dp(10)
+            viewclass: 'Row1'
+            size_hint: .44, .5
+            pos_hint: {'x': .06, 'top': .65}
+
+            RecycleBoxLayout:
+                default_size: None, dp(29)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+                spacing: dp(2)
+
+        RecycleView:
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, .5)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: '/Users/chris/Desktop/Surran Programs/Fut/Python GUI FUT/images/whiteSquare.jpg'
+            size_hint: .44, .5
+            pos_hint: {'x': .51, 'top': .65}
+            id: watchList
+            scroll_type: ['bars', 'content']
+            scroll_wheel_distance: dp(114)
+            bar_width: dp(10)
+            viewclass: 'Row'
+            # TODO: Fix player watchList. Make it a scrollable label and make sure it is orientated correctly.
+            RecycleBoxLayout:
+                default_size: None, dp(29)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+                spacing: dp(2)
+
+
+
+        GridLayout:
+            cols: 2
+            rows: 2
+            pos_hint: {'x': .06, 'top': .18}
+            size_hint: .6, .15
+            Label:
+                text: "Current Action:"
+                color: 0, 0, 0, 1
+                halign: 'left'
+                text_size: self.size
+                size_hint_y: .5
+                size_hint_x: .5
+            Label:
+                id: boughtItemCount
+                text: "Bought Items:"
+                color: 0, 0, 0, 1
+                halign: 'left'
+                text_size: self.size
+                size_hint_y: .5
+                size_hint_x: .5
+            Label:
+                id: coinBalance
+                text: "Current Balance:"
+                color: 0, 0, 0, 1
+                halign: 'left'
+                text_size: self.size
+                size_hint_y: .5
+                size_hint_x: .5
+            Label:
+                text: "Sold Items:"
+                color: 0, 0, 0, 1
+                halign: 'left'
+                text_size: self.size
+                size_hint_y: .5
+                size_hint_x: .5
+        Switch:
+            id: tradeSwitch
+            pos_hint: {'x': .8, 'top': .1}
+            size_hint: .1, .1
+            active:False
+            on_active: root.switch()
+
+        ProgressBar:
+            id: actionCountProgress
+            max: 500
+            value: 0
+            size_hint: .3, .1
+            pos_hint: {'x': .6, 'top': .15}
+
+
+
+
+
+<TradingWindowStats@GridLayout>:
+    cols: 2
+    rows: 2
+    Label:
+        text: "Current Action:"
+        color: 0, 0, 0, 1
+        halign: 'left'
+        text_size: self.size
+        size_hint_y: .5
+        size_hint_x: .5
+    Label:
+        id: boughtItemCount
+        text: "Bought Items:"
+        color: 0, 0, 0, 1
+        halign: 'left'
+        text_size: self.size
+        size_hint_y: .5
+        size_hint_x: .5
+    Label:
+        id: coinBalance
+        text: "Current Balance:"
+        color: 0, 0, 0, 1
+        halign: 'left'
+        text_size: self.size
+        size_hint_y: .5
+        size_hint_x: .5
+    Label:
+        text: "Sold Items:"
+        color: 0, 0, 0, 1
+        halign: 'left'
+        text_size: self.size
+        size_hint_y: .5
+        size_hint_x: .5

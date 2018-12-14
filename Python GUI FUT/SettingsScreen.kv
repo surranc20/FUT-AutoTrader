@@ -1,0 +1,24 @@
+<SettingsScreen>:
+    name: 'SettingsScreen'
+    DefaultScreen:
+        Label:
+            text: "Current Coin Limit: "
+            color: 0, 0, 0, 1
+            size_hint: .05, .1
+            pos_hint: {'x': .08, 'top': .6}
+
+        TextInput:
+            id: coinLimit
+            text: str(root.getCurrentCoinLimit())
+            pos_hint: {'x': .2, 'top': .58}
+            size_hint: .2,.05
+            background_color: 1, 1, 1, .6
+            multiline: False
+
+        Button:
+            text: "Submit"
+            color: 0, 0, 0, 1
+            on_press: app.bot.updateCoinLimit(int(coinLimit.text))
+            on_release: coinLimit.text = str(root.getCurrentCoinLimit())
+            size_hint: .2, .05
+            pos_hint: {'x': .41, 'top': .58}

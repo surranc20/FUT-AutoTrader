@@ -1,0 +1,137 @@
+#: import threading threading
+
+<TradingParameters>:
+    name: 'TradingParameters'
+    DefaultScreen:
+        # The below widget displays the players the user wishes to buy and sell
+        RecycleView:
+            id: tradePlayersList
+            canvas.before:
+                Color:
+                    rgba: (1, 1, 1, .5)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: '/Users/chris/Desktop/Surran Programs/Fut/Python GUI FUT/images/whiteSquare.jpg'
+            scroll_type: ['bars', 'content']
+            scroll_wheel_distance: dp(114)
+            bar_width: dp(10)
+            viewclass: 'Row'
+            size_hint: .44, .5
+            pos_hint: {'x': .51, 'top': .65}
+            RecycleBoxLayout:
+                default_size: None, dp(45)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+                spacing: dp(2)
+
+        Label:
+            text: 'Currently searching market for ...'
+            pos_hint: {'x': .55, 'top': .72}
+            size_hint: .2,.1
+            color: 0,0,0,1
+            bold: True
+
+        # TODO Change box location and make it dynamically update as the user types
+        Label:
+            text: 'Add Player:          ' # Spaces keep Labels aligned. Tacky (Chris Surran)
+            pos_hint: {'x': 0, 'top': .72}
+            size_hint: .2,.1
+            color: 0,0,0,1
+            bold: True
+
+        TextInput:
+            id: playerToInput
+            pos_hint: {'x': .05, 'top': .63}
+            size_hint: .2,.07
+            background_color: 1, 1, 1, .6
+            multiline: False
+
+        Button:
+            text: "Submit"
+            pos_hint: {'x': .05, 'top': .55}
+            size_hint: .2,.07
+            background_color: 1, 1, 1, .6
+            on_press: checkList.data = []
+            on_release: root.searchForPlayer(playerToInput.text, checkList.data)
+
+
+        # TODO Add functionality to remove player
+        Label:
+            text: 'Remove Player: '
+            pos_hint: {'x': 0, 'top': .5}
+            size_hint: .2,.1
+            color: 0,0,0,1
+            bold: True
+
+        TextInput:
+            id: playerToRemove
+            pos_hint: {'x': .05, 'top': .43}
+            size_hint: .2,.07
+            background_color: 1, 1, 1, .6
+            multiline: False
+
+        Button:
+            text: "Submit"
+            pos_hint: {'x': .05, 'top': .35}
+            size_hint: .2,.07
+            background_color: 1, 1, 1, .6
+            on_press: app.bot.allowStartTrade()
+            on_release: root.printIDS()
+            #threading.Thread(target = app.bot.trade, args = (app.root.ids.botActions.data)).start()
+        Button:
+            text: "Stop"
+            pos_hint: {'x': .27, 'top': .35}
+            size_hint: .1, .07
+            on_press: app.bot.stopTrade()
+
+
+        RecycleView:
+            id: checkList
+            canvas.before:
+                Color:
+                    rgba: (0, 0, 0, .5)
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+                    source: '/Users/chris/Desktop/Surran Programs/Fut/Python GUI FUT/images/whiteSquare.jpg'
+            scroll_type: ['bars', 'content']
+            scroll_wheel_distance: dp(114)
+            bar_width: dp(10)
+            viewclass: 'SelectableLabel'
+            size_hint: .3, .2
+            pos_hint: {'x': .05, 'top': .27}
+            SelectableRecycleBoxLayout:
+                id: checked
+                default_size: None, dp(20)
+                default_size_hint: 1, None
+                size_hint_y: None
+                height: self.minimum_height
+                orientation: 'vertical'
+                multiselect: True
+                touch_multiselect: True
+
+        Label:
+            text: "Max Price:"
+            pos_hint: {'x': .31, 'top': .22}
+            size_hint: .2, .1
+            color: 0,0,0,1
+            bold: True
+
+        TextInput:
+            id: maxPrice
+            size_hint: .2, .07
+            pos_hint: {'x': .37, 'top': .14}
+            background_color: 1, 1, 1, .6
+            multiline: False
+
+        Button:
+            text: "Submit"
+            pos_hint: {'x': .6, 'top': .14}
+            size_hint: .2,.07
+            background_color: 1, 1, 1, .6
+            on_press: app.bot.addPlayerToBidList(root.addPlayerToBidList(tradePlayersList.data, checkList, tuple(int(x) for x in maxPrice.text.split(","))))
+            on_release: print(app.bot.playersToTrade)
+

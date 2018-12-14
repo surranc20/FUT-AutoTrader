@@ -1,0 +1,83 @@
+<LoginScreen>:
+    name: 'LoginScreen'
+    FloatLayout:
+        spacing: dp(2)
+        canvas.before:
+            Color:
+                rgba: (.3, .3, .3, 1)
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: '/Users/chris/Desktop/Surran Programs/Fut/Python GUI FUT/images/login.jpg'
+        TextInput:
+            id: Username
+            text: "Username"
+            size_hint: .2, .05
+            pos_hint: {'x': .7, 'top': .6}
+            background_color: 1, 1, 1, .6
+            multiline: False
+        TextInput:
+            id: Password
+            text: "Password"
+            password: True
+            size_hint: .2, .05
+            pos_hint:{'x': .7, 'top': .46}
+            background_color: 1,1,1,.6
+            multiline: False
+        TextInput:
+            id: SecretAnswer
+            text: "Secret Answer"
+            size_hint: .2, .05
+            pos_hint:{'x': .7, 'top': .53}
+            background_color: 1,1,1,.6
+            multiline: False
+#        Image:
+#            source:'/Users/chris/Desktop/Surran Programs/Fut/Python GUI FUT/images/fut_logo.gif'
+#            pos_hint: {'x': .7, 'top': .2}
+#            size_hint: .18, .1
+#            allow_stretch: True
+#            keep_ratio: False
+#            anim_delay: .08
+        Button:
+            text_size: self.size
+            bold: True
+            color: 0, 0, 0, 1
+            valign: 'center'
+            halign: 'left'
+            background_color: 0,0,0,0
+            size_hint: .15, .07
+            pos_hint: {'x': .7, 'top': .39}
+            text: ' Login'
+            on_press: root.startLoginThread(Username.text, Password.text, SecretAnswer.text)
+            canvas.before:
+                Color:
+                    rgba: (180/255, 180/255, 180/255, .9) if self.state == 'normal' else (0, .7, .7, 1)
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [25]
+            on_release: Password.text = ""
+
+#: import Factory kivy.factory.Factory
+<InvalidLogin@Popup>:
+    title: "Login Failed"
+    GridLayout:
+        cols: 1
+        Label:
+            text: "Please make sure the supplied information is correct."
+            text_size: self.size
+        Button:
+            text: "Close"
+            on_release: root.dismiss()
+            size_hint: 1, .3
+
+
+
+
+<FutGif@Image>:
+    source:'/Users/chris/Desktop/Surran Programs/Fut/Python GUI FUT/images/fut_logo.gif'
+    size_hint: .18, .1
+    pos_hint: {'x': .7, 'y': .2}
+    allow_stretch: True
+    keep_ratio: False
+

@@ -1,0 +1,5 @@
+#LWP-Cookies-2.0
+Set-Cookie3: _nx_mpcid="0c87ee24-35cd-42d3-8593-76f577a30ad2"; path="/"; domain=".ea.com"; path_spec; domain_dot; expires="2022-10-28 05:16:05Z"; version=0
+Set-Cookie3: remid="TUU6blZVSXA3M2tsWVZyVDd1QXpZa28wcFQ0Y056dHBMQ0lJM2QzVElNVjowMjEyMjU2MjQ.MVhJ595WB9BWAXI3MCRFuaS4DCVQljYjfz4o2unh"; path="/connect"; domain="accounts.ea.com"; path_spec; secure; expires="2018-04-13 15:15:20Z"; HttpOnly=None; version=0
+Set-Cookie3: sid="U0hPajdNcDd1dXp3c1ppdU5YT1dTcjRmTlhUZzdpcVBLV3VrdHBRclJDWTNSTW43azdzWlJzM3lobVlTWQ.ZvUBQoEogLWOS7Tygji4L3acsSd2YkrZKJKuYNA1eU0"; path="/connect"; domain="accounts.ea.com"; path_spec; secure; discard; HttpOnly=None; version=0
+Set-Cookie3: JSESSIONID="E395E660CBE9DFD462C90C494F25A8AB.prdaccountc-28"; path="/p"; domain="signin.ea.com"; path_spec; secure; discard; HttpOnly=None; version=0

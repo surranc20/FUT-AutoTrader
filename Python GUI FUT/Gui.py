@@ -159,7 +159,7 @@ class LoginScreen(Screen):
         """Takes the users username password and secretAnswer and attempts to login.
         Will request ea code if needed."""
         try:
-            App.bot = TradingBot("jcp15320@gmail.com", "Orangemen2", "generals")
+            App.bot = TradingBot(username, password, secretAnswer)
             self.updateScreen()
         except:
             self.remove_widget(self.loadingGif)
